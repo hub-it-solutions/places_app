@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:image_picker/image_picker.dart';
+
 class PlaceLoction {
   final double latitude;
   final double longitude;
