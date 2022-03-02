@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:places_app/providers/places.dart';
 import 'package:places_app/screens/add_place_screen.dart';
@@ -31,9 +29,12 @@ class PlacesListScreen extends StatelessWidget {
                 child: ch,
               )
             : GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
                 ),
+                itemCount: places.items.length,
                 itemBuilder: (BuildContext context, int i) {
                   return Container(
                     decoration: BoxDecoration(

@@ -65,7 +65,11 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               primary: Theme.of(context).colorScheme.primary,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
-            onPressed: () {},
+            onPressed: () {
+              _savedPlace();
+              print(_pickedImage);
+              print(_titleController.text);
+            },
             icon: const Icon(Icons.place),
             label: const Text("Add Place"),
           ),
