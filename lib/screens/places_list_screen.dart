@@ -21,10 +21,10 @@ class PlacesListScreen extends StatelessWidget {
         ],
       ),
       body: Consumer<Places>(
-        child: Center(
-          child: const Text("Got no places yet, start adding  some!"),
+        child: const Center(
+          child: Text("Got no places yet, start adding  some!"),
         ),
-        builder: (ctx, places, ch) => places.items.length <= 0
+        builder: (ctx, places, ch) => places.items.isEmpty
             ? Center(
                 child: ch,
               )

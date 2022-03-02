@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:places_app/providers/places.dart';
 import 'package:places_app/widgets/image_input.dart';
 import 'package:provider/provider.dart';
@@ -53,7 +52,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     ),
                     controller: _titleController,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ImageInput(onSelectImage: _selctImage),
                 ],
               ),
@@ -67,8 +66,8 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             ),
             onPressed: () {
               _savedPlace();
-              print(_pickedImage);
-              print(_titleController.text);
+              // print(_pickedImage);
+              // print(_titleController.text);
             },
             icon: const Icon(Icons.place),
             label: const Text("Add Place"),
