@@ -22,7 +22,7 @@ class PlacesListScreen extends StatelessWidget {
       ),
       body: FutureBuilder(
         future: Provider.of<Places>(context, listen: false).fetchAndSetPlaces(),
-        builder: (context, snapshot) =>
+        builder: (context, AsyncSnapshot snapshot) =>
             snapshot.connectionState == ConnectionState.waiting
                 ? const Center(
                     child: CircularProgressIndicator(),
