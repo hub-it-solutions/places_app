@@ -28,20 +28,30 @@ class PlacesListScreen extends StatelessWidget {
             ? Center(
                 child: ch,
               )
-            : GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-                itemCount: places.items.length,
-                itemBuilder: (BuildContext context, int i) {
-                  return Container(
-                    decoration: BoxDecoration(
+            : Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                  ),
+                  itemCount: places.items.length,
+                  itemBuilder: (BuildContext context, int i) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
-                            image: FileImage(places.items[i].image))),
-                  );
-                }),
+                          fit: BoxFit.cover,
+                          image: FileImage(
+                            places.items[i].image,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
       ),
     );
   }
