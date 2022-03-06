@@ -5,7 +5,7 @@ import 'package:places_app/helpers/db_helpers.dart';
 import 'package:places_app/models/place.dart';
 
 class Places with ChangeNotifier {
-  final List<Place> _items = [];
+  List<Place> _items = [];
   List<Place> get items {
     return [..._items];
   }
@@ -28,5 +28,21 @@ class Places with ChangeNotifier {
       'title': newPlace.title,
       'image': newPlace.image.path,
     });
+  }
+
+  Future<void> fetchAndSetPlaces() async {
+    final dataList = await DBHelper.getData('places');
+
+    _items = dataList
+        .map((item) => Place(
+              id: item['id'],
+              title: item['title'],
+              location: PlaceLoction(latitude: 0, longitude: 0, address: ''),
+              image: File(
+                item['image'],
+              ),
+            ))
+        .toList();
+    notifyListeners();
   }
 }

@@ -20,38 +20,47 @@ class PlacesListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Consumer<Places>(
-        child: const Center(
-          child: Text("Got no places yet, start adding  some!"),
-        ),
-        builder: (ctx, places, ch) => places.items.isEmpty
-            ? Center(
-                child: ch,
-              )
-            : Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                  ),
-                  itemCount: places.items.length,
-                  itemBuilder: (BuildContext context, int i) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: FileImage(
-                            places.items[i].image,
+      body: FutureBuilder(
+        future: Provider.of<Places>(context, listen: false).fetchAndSetPlaces(),
+        builder: (context, snapshot) =>
+            snapshot.connectionState == ConnectionState.waiting
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Consumer<Places>(
+                    child: const Center(
+                      child: Text("Got no places yet, start adding  some!"),
+                    ),
+                    builder: (ctx, places, ch) => places.items.isEmpty
+                        ? Center(
+                            child: ch,
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                              ),
+                              itemCount: places.items.length,
+                              itemBuilder: (BuildContext context, int i) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: FileImage(
+                                        places.items[i].image,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+                  ),
       ),
     );
   }
